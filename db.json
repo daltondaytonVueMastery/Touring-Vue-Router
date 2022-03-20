@@ -1,0 +1,64 @@
+{
+  "events": [
+    {
+      "id": 123,
+      "category": "animal welfare",
+      "title": "Cat Adoption Day",
+      "description": "Find your new feline friend at this event.",
+      "location": "Meow Town",
+      "date": "January 28, 2022",
+      "time": "12:00",
+      "organizer": "Kat Laydee"
+    },
+    {
+      "id": 456,
+      "category": "food",
+      "title": "Community Gardening",
+      "description": "Join us as we tend to the community edible plants.",
+      "location": "Flora City",
+      "date": "March 14, 2022",
+      "time": "10:00",
+      "organizer": "Fern Pollin"
+    },
+    {
+      "id": 789,
+      "category": "sustainability",
+      "title": "Beach Cleanup",
+      "description": "Help pick up trash along the shore.",
+      "location": "Playa Del Carmen",
+      "date": "July 22, 2022",
+      "time": "11:00",
+      "organizer": "Carey Wales"
+    },
+    {
+      "id": "2b0fe3c2-9c82-4c93-8a50-a2ed2669c0d4",
+      "category": "animal welfare",
+      "title": "Dog Adoption Day",
+      "description": "Get a dog",
+      "location": "Earth",
+      "date": "3/20/2022",
+      "time": "18:00",
+      "organizer": "Dalton Dayton"
+    },
+    {
+      "id": "eef7f940-901b-4aa8-8314-8ac15fcfa26d",
+      "category": "animal welfare",
+      "title": "Kangaroo Combing Competition",
+      "description": "Idk bro",
+      "location": "Outback",
+      "date": "Sept 4, 2022",
+      "time": "15:00",
+      "organizer": "Dalton Dayton"
+    },
+    {
+      "id": "7d278d31-ebf9-433e-b308-8a2324f77b72",
+      "category": "",
+      "title": "Community Potluck",
+      "description": "Bring a dish to share.",
+      "location": "Earth",
+      "date": "May 20, 2024",
+      "time": "13:00",
+      "organizer": "Dalton Dayton"
+    }
+  ]
+}
