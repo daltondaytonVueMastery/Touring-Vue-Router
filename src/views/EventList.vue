@@ -10,7 +10,16 @@
         rel="prev"
         v-if="page != 1"
       >
-        &#60; Previous
+        <span>&#60; Previous</span>
+      </router-link>
+
+      <router-link
+        v-for="index in totalPages"
+        :key="index"
+        :to="{ name: 'EventList', query: { page: index } }"
+        :class="[index == page ? activeClass : '']"
+      >
+        <span>{{ index }}</span>
       </router-link>
 
       <router-link
@@ -19,7 +28,7 @@
         rel="next"
         v-if="hasNextPage"
       >
-        Next &#62;
+        <span>Next &#62;</span>
       </router-link>
     </div>
   </div>
@@ -35,13 +44,22 @@ export default {
   components: {
     EventCard, // register it as a child component
   },
+  data() {
+    return {
+      activeClass: "activeClass",
+    };
+  },
   computed: {
     events() {
       return this.$store.state.events;
     },
+    totalPages() {
+      return Math.ceil(
+        this.$store.state.totalEvents / this.$store.state.perPage
+      );
+    },
     hasNextPage() {
-      var totalPages = Math.ceil(this.$store.state.totalEvents / 2);
-      return this.page < totalPages;
+      return this.page < this.totalPages;
     },
   },
   created() {
@@ -80,5 +98,10 @@ export default {
 
 #page-next {
   text-align: right;
+}
+
+.activeClass span {
+  font-weight: bold;
+  text-decoration: underline;
 }
 </style>

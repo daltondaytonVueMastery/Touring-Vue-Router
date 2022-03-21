@@ -4,6 +4,7 @@ import EventService from "@/services/EventService";
 export default createStore({
   state: {
     user: "Dalton Dayton",
+    perPage: 2,
     totalEvents: 0,
     events: [],
     event: {},
@@ -30,7 +31,7 @@ export default createStore({
         });
     },
     fetchEvents({ commit }, page) {
-      return EventService.getEvents(2, page)
+      return EventService.getEvents(this.state.perPage, page)
         .then((response) => {
           this.state.totalEvents = response.headers["x-total-count"];
           commit("SET_EVENTS", response.data);
