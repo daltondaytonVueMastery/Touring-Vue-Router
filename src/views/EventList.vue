@@ -64,11 +64,8 @@ export default {
   },
   created() {
     watchEffect(() => {
-      this.$store.dispatch("fetchEvents", this.page).catch((error) => {
-        this.$router.push({
-          name: "ErrorDisplay",
-          params: { error: error },
-        });
+      this.$store.dispatch("fetchEvents", this.page).catch(() => {
+        this.$router.push({ name: "NetworkError" });
       });
     });
   },
