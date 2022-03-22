@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <div id="flashMessage" v-if="flashMessage">{{ flashMessage }}</div>
     <div id="nav">
       <router-link :to="{ name: 'EventList' }">Events</router-link> |
       <router-link :to="{ name: 'EventCreate' }">Create Event</router-link> |
@@ -9,7 +10,30 @@
   </div>
 </template>
 
+<script>
+export default {
+  computed: {
+    flashMessage() {
+      return this.$store.state.flashMessage;
+    },
+  },
+};
+</script>
+
 <style>
+@keyframes yellowfade {
+  from {
+    background: yellow;
+  }
+  to {
+    background: transparent;
+  }
+}
+
+#flashMessage {
+  animation-name: yellowfade;
+  animation-duration: 3s;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

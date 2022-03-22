@@ -8,6 +8,7 @@ export default createStore({
     totalEvents: 0,
     events: [],
     event: {},
+    flashMessage: "",
   },
   mutations: {
     ADD_EVENT(state, event) {

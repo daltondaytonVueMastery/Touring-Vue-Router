@@ -11,6 +11,13 @@ export default {
       // Call to API
       // If registered then redirect to event details
 
+      this.$store.state.flashMessage =
+        "You are successfully registered for " + this.$store.state.event.title;
+
+      setTimeout(() => {
+        this.$store.state.flashMessage = "";
+      }, 3000);
+
       this.$router.push({
         name: "EventDetails",
       });
