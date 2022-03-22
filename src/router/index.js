@@ -8,6 +8,8 @@ import EventCreate from "@/views/EventCreate.vue";
 import AboutView from "@/views/AboutView.vue";
 import NotFound from "@/views/NotFound.vue";
 import NetworkError from "@/views/NetworkError.vue";
+import NProgress from "nprogress";
+import store from "@/store/index";
 
 const routes = [
   {
@@ -21,6 +23,18 @@ const routes = [
     name: "EventLayout",
     props: true,
     component: EventLayout,
+    beforeEnter: (to) => {
+      store.dispatch("fetchEvent", to.params.id).catch((error) => {
+        if (error.response && error.response.status == 404) {
+          return {
+            name: "404Resource",
+            params: { resource: "event" },
+          };
+        } else {
+          return { name: "NetworkError" };
+        }
+      });
+    },
     children: [
       {
         path: "",
@@ -85,6 +99,14 @@ const routes = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach(() => {
+  NProgress.start();
+});
+
+router.afterEach(() => {
+  NProgress.done();
 });
 
 export default router;

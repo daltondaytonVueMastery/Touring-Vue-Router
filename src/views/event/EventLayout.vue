@@ -14,19 +14,6 @@
 
 <script>
 export default {
-  props: ["id"],
-  created() {
-    this.$store.dispatch("fetchEvent", this.id).catch((error) => {
-      if (error.response && error.response.status == 404) {
-        this.$router.push({
-          name: "404Resource",
-          params: { resource: "event" },
-        });
-      } else {
-        this.$router.push({ name: "NetworkError" });
-      }
-    });
-  },
   computed: {
     event() {
       return this.$store.state.event;

@@ -37,7 +37,6 @@
 <script>
 import EventCard from "@/components/EventCard.vue";
 import store from "@/store/index";
-import NProgress from "nprogress";
 
 export default {
   name: "EventList",
@@ -64,26 +63,18 @@ export default {
     },
   },
   beforeRouteEnter(to, from, next) {
-    NProgress.start();
     store
       .dispatch("fetchEvents", parseInt(to.query.page) || 1)
       .then(next())
       .catch(() => {
         next({ name: "NetworkError" });
-      })
-      .finally(() => {
-        NProgress.done();
       });
   },
   beforeRouteUpdate(to) {
-    NProgress.start();
-    store
+    return store
       .dispatch("fetchEvents", parseInt(to.query.page) || 1)
       .catch(() => {
         return { name: "NetworkError" };
-      })
-      .finally(() => {
-        NProgress.done();
       });
   },
 };
