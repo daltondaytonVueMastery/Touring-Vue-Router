@@ -36,7 +36,8 @@
 
 <script>
 import EventCard from "@/components/EventCard.vue";
-import { watchEffect } from "vue";
+import store from "@/store/index";
+import NProgress from "nprogress";
 
 export default {
   name: "EventList",
@@ -62,12 +63,28 @@ export default {
       return this.page < this.totalPages;
     },
   },
-  created() {
-    watchEffect(() => {
-      this.$store.dispatch("fetchEvents", this.page).catch(() => {
-        this.$router.push({ name: "NetworkError" });
+  beforeRouteEnter(to, from, next) {
+    NProgress.start();
+    store
+      .dispatch("fetchEvents", parseInt(to.query.page) || 1)
+      .then(next())
+      .catch(() => {
+        next({ name: "NetworkError" });
+      })
+      .finally(() => {
+        NProgress.done();
       });
-    });
+  },
+  beforeRouteUpdate(to) {
+    NProgress.start();
+    store
+      .dispatch("fetchEvents", parseInt(to.query.page) || 1)
+      .catch(() => {
+        return { name: "NetworkError" };
+      })
+      .finally(() => {
+        NProgress.done();
+      });
   },
 };
 </script>
